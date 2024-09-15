@@ -141,7 +141,6 @@ def saturation_mixing_ratio(p, td):
         saturation mixing ratio
     """
     e_s = e_sat(td)
-    #return 0.622 * e_s / (p * 100 - e_s)
     return mixing_ratio(e_s, p * 100)
 
 
