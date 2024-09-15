@@ -12,3 +12,21 @@ $C_i(\theta_w) = \sum_{j=0}^{4} a_{ij} \theta_w^i$
 Moist adiabat (pressure as function of temperature) approximation:
 $p(t) = \sum_{i=0}^{5} C_{i}(\theta_w)t^i$
 
+With 5th degree moist adiabat approximation and 4th degree coefficient approximation, in range of BT temperatures from -15 to -75 $\deg$C (the usual range of deep convective cloud top temperatures),
+maximum absolute altitude error (when compared to iterative moist adiabat calculation) is 28m.
+
+IMPORTANT NOTES:
+This calculation will work only with convective clouds!
+
+As this calculation is sensitive to starting temperature and dewpoint values, it's probably best to
+take the most unstable parcel from some area (e.g. 30-40km radius) around the target BT pixel.
+The best approach to find the most unstable parcel is to calculate equivalent potential temperature (theta_e)
+from all temperatures and dewpoints in the area.
+
+Also, in case of elevated convection (most of night and warm front convection), starting temperature and
+dewpoint should not be taken from the surface, but from the most unstable level. This can also be found by
+calculating theta_e from surface to 700hPa and taking the level with maximum theta_e.
+
+For more details see the attached conference poster.
+
+How to cite: Šoljan, V., Jurković, J., and Babić, N.: Fast approximation for calculating deep convection cloud top heights from satellite brightness temperature, EMS Annual Meeting 2024, Barcelona, Spain, 1–6 Sep 2024, EMS2024-861, https://doi.org/10.5194/ems2024-861, 2024. 
