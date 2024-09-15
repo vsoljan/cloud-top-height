@@ -156,16 +156,33 @@ def theta_e(t, td, p):
     r_s = saturation_mixing_ratio(p, td)
     e = e_sat(td)
     theta = potential_temperature(p - e / 100., t)
-
     # Convert to Kelvin and Pa
     t = t + ZERO_C_K
     td = td + ZERO_C_K
     p = p * 100
     theta = theta + ZERO_C_K
-
     t_l = 56 + 1. / (1. / (td - 56) + np.log(t / td) / 800.)
     th_l = theta * np.power((t / t_l), (0.28 * r_s))
     return th_l * np.exp(r_s * (1 + 0.448 * r_s) * (3036. / t_l - 1.78))
+
+
+def theta_w_from_theta_e(th_e):
+    """
+    Davies Jones 2008 calculation of wet bulb potential temperature
+    from equivalent potential temperature.
+    INPUT:
+        theta_e_val (equivalent potential temperature) [K]
+    OUTPUT:
+        theta-w [K]
+    """
+    x = th_e / 273.15
+    x2 = x * x
+    x3 = x2 * x
+    x4 = x3 * x
+    a = 7.101574 - 20.68208 * x + 16.11182 * x2 + 2.574631 * x3 - 5.205688 * x4
+    b = 1 - 3.552497 * x + 3.781782 * x2 - 0.6899655 * x3 - 0.5929340 * x4
+    th_w = th_e - np.exp(a / b)
+    return np.where(th_e <= 173.15, th_e, th_w)
 
 
 def theta_w(t, td, p):
@@ -180,15 +197,39 @@ def theta_w(t, td, p):
     """
     # Calculate theta-e [K]
     th_e = theta_e(t, td, p)
-    x = th_e / 273.15
-    x2 = x * x
-    x3 = x2 * x
-    x4 = x3 * x
-    a = 7.101574 - 20.68208 * x + 16.11182 * x2 + 2.574631 * x3 - 5.205688 * x4
-    b = 1 - 3.552497 * x + 3.781782 * x2 - 0.6899655 * x3 - 0.5929340 * x4
+    return theta_w_from_theta_e(th_e)
 
-    th_w = th_e - np.exp(a / b)
-    return np.where(th_e <= 173.15, th_e, th_w)
+
+def ctp_from_theta_e(theta_e_max, bt):
+    """
+    Cloud top pressure from theta_e and BT
+    This can be useful if we find max theta_e in some 3D space
+    (e.g. 30km radius around BT pixel and sfc-700hPa), so we get
+    the moist adiabat of the most unstable parcel.
+    INPUT:
+        theta_e_max [degC]
+        bt (IR brightness temp) [degC]
+    OUTPUT:
+        cloud top pressure [hPa]
+    """
+    # Evaluate wet bulb potential temp. from theta_e
+    tw = theta_w_from_theta_e(theta_e_max) - ZERO_C_K
+    tw2 = tw * tw
+    tw3 = tw2 * tw
+    tw4 = tw3 * tw
+    # Evaluate moist adiabat polynomial coefficients
+    mac = np.zeros(6)
+    mac[0] = 1.34900172e-13 * tw4 - 9.43979160e-12 * tw3 + 1.87653668e-10 * tw2 - 7.65322959e-11 * tw + 2.92814658e-08
+    mac[1] = 1.83574985e-11 * tw4 - 1.34431358e-09 * tw3 + 1.98697357e-08 * tw2 + 2.98476410e-07 * tw + 1.27504708e-05
+    mac[2] = 9.71770820e-10 * tw4 - 6.82962603e-08 * tw3 - 2.29995000e-07 * tw2 + 5.36097021e-05 * tw + 2.28596093e-03
+    mac[3] = 1.53207987e-08 * tw4 - 1.92972790e-07 * tw3 - 1.22319198e-04 * tw2 + 2.46185591e-03 * tw + 2.34738009e-01
+    mac[4] = -1.69715923e-07 * tw4 + 7.78264909e-05 * tw3 - 5.65297782e-03 * tw2 - 1.58431571e-01 * tw + 1.86846195e+01
+    mac[5] = 4.15209383e-05 * tw4 - 1.28889861e-04 * tw3 - 7.22894532e-02 * tw2 - 1.86535189e+01 * tw + 9.98111805e+02
+    # Evaluate and return CT pressure: p(t)
+    return np.polyval(mac, bt)
+
+# Vectorize above function so it can take arrays
+ctp_from_theta_e_v = np.vectorize(ctp_from_theta_e)
 
 
 def ctp(t0, td0, p0, bt):
@@ -231,4 +272,55 @@ if __name__ == '__main__':
     tops_p = ctp_v(t, td, p, bt)
     isa_heights = p2h(tops_p)
     print(tops_p)
+    print()
     print(isa_heights)
+    print("="*80)
+
+    # Example of finding the most unstable parcel
+    # For one BT value
+    bt = -65
+    # We take spatial data e.g. 30km around the lat/lon of above BT pixel
+    # and also multiple levels from surface to 700hPa in the same radius.
+    # So we have arrays of temps, dewpoints, and pressure (representing different levels)
+    # We just have to calculate max theta_e and we don't care about it's exact location! 
+    np.random.seed(42)
+    # Surface level arrays simulation
+    t = np.random.randint(10, 28, size=30)
+    td = t - np.random.randint(2, 11, size=30)
+    p = np.ones(30) * 1000
+
+    # 900 hPa level simulation
+    t_900 = np.random.randint(0, 25, size=30)
+    td_900 = t_900 - np.random.randint(2, 11, size=30)
+    t = np.append(t, t_900)
+    td = np.append(td, td_900)
+    p = np.append(p, np.ones(30) * 900)
+
+    # 850 hPa level simulation
+    t_850 = np.random.randint(-10, 20, size=30)
+    td_850 = t_850 - np.random.randint(2, 8, size=30)
+    t = np.append(t, t_850)
+    td = np.append(td, td_850)
+    p = np.append(p, np.ones(30) * 850)    
+
+    # 800 hPa level simulation
+    t_800 = np.random.randint(-10, 15, size=30)
+    td_800 = t_800 - np.random.randint(1, 8, size=30)
+    t = np.append(t, t_800)
+    td = np.append(td, td_800)
+    p = np.append(p, np.ones(30) * 800)
+
+    print(t)
+    print(td)
+    print(p)
+
+    # Find the most unstable parcel in all levels
+    th_e = theta_e(t, td, p)
+    th_e_max = th_e.max()
+    # Just to check which level and values
+    th_e_max_idx = th_e.argmax()
+    print(f"Most unstable parcel p: {p[th_e_max_idx]} hPa, T: {t[th_e_max_idx]} C, Td: {td[th_e_max_idx]} C")
+
+    # Calculate top pressure from this parcel
+    ct_press = ctp_from_theta_e(th_e_max, bt)
+    print(f"Cloud top pressure {ct_press:.1f} hPa => ISA altitude: {p2h(ct_press):.0f} m")
