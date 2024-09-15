@@ -22,7 +22,7 @@ This calculation will work only with convective clouds!
 As this calculation is sensitive to starting temperature and dewpoint values, it's probably best to
 take the most unstable parcel from some area (e.g. 30-40km radius) around the target BT pixel.
 The best approach to find the most unstable parcel is to calculate equivalent potential temperature ($\theta_e$)
-from all temperatures and dewpoints in the area.
+from all temperatures and dewpoints in the area and just take the maximum value.
 
 Also, in case of elevated convection (most of night and warm front convection), starting temperature and
 dewpoint should not be taken from the surface, but from the most unstable level. This can also be found by
