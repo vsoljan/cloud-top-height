@@ -151,7 +151,7 @@ def theta_e(t, td, p):
         t, td (temperature, dewpoint)[degC]
         p (pressure level of t and td) [hPa]
     OUTPUT:
-        theta-e [K]
+        theta_e [K]
     """
     r_s = saturation_mixing_ratio(p, td)
     e = e_sat(td)
@@ -173,7 +173,7 @@ def theta_w_from_theta_e(th_e):
     INPUT:
         theta_e_val (equivalent potential temperature) [K]
     OUTPUT:
-        theta-w [K]
+        theta_w [K]
     """
     x = th_e / 273.15
     x2 = x * x
@@ -193,7 +193,7 @@ def theta_w(t, td, p):
         t, td (temperature, dewpoint)[degC]
         p (pressure level of t and td) [hPa]
     OUTPUT:
-        theta-w [K]
+        theta_w [K]
     """
     # Calculate theta-e [K]
     th_e = theta_e(t, td, p)
