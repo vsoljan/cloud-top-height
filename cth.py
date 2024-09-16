@@ -29,7 +29,7 @@ Moist adiabats are approximated with 5th degree polynomial. As moist adiabat sha
 with temperature and dewpoint (which can be represented by wet bulb potential temperature
 [theta_w]), approximation coefficients also depend on theta_w.
 This dependency was further modelled with 4th degree polynomials.
-So in total we have 36 coefficients with which we can approximate moist adiabats as:
+So in total we have 5x6 coefficients with which we can approximate moist adiabats as:
 
 C_i(theta_w) = a_i0 * theta_w^4 + a_i1 * theta_w^3 + a_i2 * theta_w^2 + a_i3 * theta_w + a_i4
 
