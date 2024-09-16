@@ -30,4 +30,11 @@ calculating $\theta_e$ from surface to 700hPa and taking the level with maximum 
 
 For more details see the attached conference poster.
 
-How to cite: Šoljan, V., Jurković, J., and Babić, N.: Fast approximation for calculating deep convection cloud top heights from satellite brightness temperature, EMS Annual Meeting 2024, Barcelona, Spain, 1–6 Sep 2024, EMS2024-861, https://doi.org/10.5194/ems2024-861, 2024. 
+How to cite: Šoljan, V., Jurković, J., and Babić, N.: Fast approximation for calculating deep convection cloud top heights from satellite brightness temperature, EMS Annual Meeting 2024, Barcelona, Spain, 1–6 Sep 2024, EMS2024-861, https://doi.org/10.5194/ems2024-861, 2024.
+
+
+References:
+Bakhshaii, Atoossa, and Roland Stull. “Saturated Pseudoadiabats—A Noniterative Approximation.” Journal of Applied Meteorology and Climatology 52, no. 1 (2013): 5–15.
+Bolton, David. “The Computation of Equivalent Potential Temperature.” Monthly Weather Review 108, no. 7 (July 1, 1980): 1046–53. https://doi.org/10.1175/1520-0493(1980)108<1046:TCOEPT>2.0.CO;2.
+Davies-Jones, Robert. “An Efficient and Accurate Method for Computing the Wet-Bulb Temperature along Pseudoadiabats.” Monthly Weather Review 136, no. 7 (2008): 2764–85. https://doi.org/10.1175/2007MWR2224.1.
+Moisseeva, Nadya, and Roland Stull. “Technical Note: A Noniterative Approach to Modelling Moist Thermodynamics.” Atmospheric Chemistry and Physics 17, no. 24 (December 19, 2017): 15037–43. https://doi.org/10.5194/acp-17-15037-2017.
