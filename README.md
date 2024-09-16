@@ -12,8 +12,8 @@ $C_i(\theta_w) = \sum_{j=0}^{4} a_{ij} \theta_w^i$
 Moist adiabat (pressure as function of temperature) approximation:
 $p(t) = \sum_{i=0}^{5} C_{i}(\theta_w)t^i$
 
-With 5th degree moist adiabat approximation and 4th degree coefficient approximation, in range of BT temperatures from -15 to -75 °C (the usual range of deep convective cloud top temperatures),
-maximum absolute altitude error (when compared to iterative moist adiabat calculation) is 28m.
+With 5th degree moist adiabat approximation and 4th degree coefficient approximation (5x6 coefficients in total, evaluating 7 polynomials), in range of BT temperatures from -15 to -75 °C (the usual range of deep convective cloud top temperatures), maximum absolute altitude error (when compared to iterative moist adiabat calculation) is 28m.
+For even more precise calculation, you can use cth_6th_deg_approx.py which uses 6th degree main approximation and 4th degree coefficient approximation (so 5x7 coefficients in total, evaluating 8 polynomials), and has maximum absolute altitude error of 7.5m!
 
 ## IMPORTANT NOTES:
 
