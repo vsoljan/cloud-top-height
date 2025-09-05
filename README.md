@@ -7,7 +7,7 @@ Moist adiabats are usually calculated iteratively from surface temperature and d
 In this code, moist adiabats are approximated with 5th degree polynomial. As moist adiabat shape changes with temperature and dewpoint (which can be represented by wet bulb potential temperature $\theta_w$), approximation coefficients also depend on $\theta_w$. This dependency was further modelled with 4th degree polynomials.
 
 Coefficient dependency on $\theta_w$ approximation:
-$C_i(\theta_w) = \sum_{j=0}^{4} a_{ij} \theta_w^i$
+$C_i(\theta_w) = \sum_{j=0}^{4} a_{ij} \theta_w^j$
 
 Moist adiabat (pressure as function of temperature) approximation:
 $p(t) = \sum_{i=0}^{5} C_{i}(\theta_w)t^i$
