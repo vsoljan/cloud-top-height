@@ -59,7 +59,9 @@ VERSION:
 
 NOTES (HOW TO USE):
 1. Copy script to (every workstation!):
-$METPATH/python/IBL/Plugins/Kernel/
+$METPATH/python/Custom/HR_CROCONTROL/Plugins/Kernel/
+(replace HR_CROCONTORL with your organisation name)
+IMPORTANT THING IS TO HAVE "__init__.py" file in every subdirectory!!!
 
 2. Execute in shell:
 iplugins --update
