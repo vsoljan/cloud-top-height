@@ -1,8 +1,10 @@
 # Installation instructions:
 
-1. Copy script to (every workstation!):
+1. Copy script to (you must do this on every workstation!):
 
-   $METPATH/python/IBL/Plugins/Kernel/
+   $METPATH/python/Custom/HR_CROCONTROL/Plugins/Kernel/
+   (replace HR_CROCONTORL with your organisation name)
+   IMPORTANT THING IS TO HAVE __init__.py file in every subdirectory!!!
 
 3. Execute in shell:
 
