@@ -17,7 +17,8 @@ For even more precise calculation, you can use cth_6th_deg_approx.py which uses 
 
 ## IMPORTANT NOTES:
 
-This calculation will work only with convective clouds! For other clouds, you should take NWP vertical temperature profile and search from tropopause downward to find the closest or equal temperature to BT. Non-convective cloud top pressure should be at that pressure level (but bare in mind than only for optically thick clouds BT is a good approximation for cloud top temperature!).
+This calculation will work only with convective clouds! For other clouds, you should take NWP vertical temperature profile and search from tropopause downward to find the closest or equal temperature to BT. Non-convective cloud top pressure should be at that pressure level.
+Also note that only for optically thick clouds (which deep convective clouds are), BT is an acceptable approximation for cloud top temperature! Because of this, in operational work we use an empirical bias correction of -5K for BT (we subtract 5K from BT) to get higher CTH estimate. 
 
 As this calculation is sensitive to starting temperature and dewpoint values, it's probably best to
 take the most unstable parcel from some area (e.g. 30-40km radius) around the target BT pixel.
