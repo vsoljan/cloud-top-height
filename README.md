@@ -47,3 +47,5 @@ Bolton, David. “The Computation of Equivalent Potential Temperature.” Monthl
 Davies-Jones, Robert. “An Efficient and Accurate Method for Computing the Wet-Bulb Temperature along Pseudoadiabats.” Monthly Weather Review 136, no. 7 (2008): 2764–85. https://doi.org/10.1175/2007MWR2224.1.
 
 Moisseeva, Nadya, and Roland Stull. “Technical Note: A Noniterative Approach to Modelling Moist Thermodynamics.” Atmospheric Chemistry and Physics 17, no. 24 (December 19, 2017): 15037–43. https://doi.org/10.5194/acp-17-15037-2017.
+
+May, R. M., Goebbert, K. H., Thielen, J. E., Leeman, J. R., Camron, M. D., Bruick, Z., Bruning, E. C., Manser, R. P., Arms, S. C., and Marsh, P. T., (2022): MetPy: A Meteorological Python Library for Data Analysis and Visualization. Bull. Amer. Meteor. Soc., 103, E2273-E2284, https://doi.org/10.1175/BAMS-D-21-0125.1.
