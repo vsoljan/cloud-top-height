@@ -37,6 +37,7 @@ For more details see the attached conference poster.
 
 
 
+
 ### References:
 
 Bakhshaii, Atoossa, and Roland Stull. “Saturated Pseudoadiabats—A Noniterative Approximation.” Journal of Applied Meteorology and Climatology 52, no. 1 (2013): 5–15.
