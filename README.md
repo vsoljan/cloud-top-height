@@ -35,8 +35,8 @@ For more details see the attached conference poster.
 
 Šoljan, V., Jurković, J., and Babić, N.: Fast approximation for calculating deep convection cloud top heights from satellite brightness temperature, EMS Annual Meeting 2024, Barcelona, Spain, 1–6 Sep 2024, EMS2024-861, https://doi.org/10.5194/ems2024-861, 2024.
 
-
-
+$~$
+$~$
 
 ### References:
 
