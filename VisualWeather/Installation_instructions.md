@@ -3,7 +3,7 @@
 1. Copy script to (you must do this on every workstation!):
 
    $METPATH/python/Custom/HR_CROCONTROL/Plugins/Kernel/
-   (replace HR_CROCONTORL with your organisation name)
+   (replace HR_CROCONTROL with your organisation name)
    IMPORTANT THING IS TO HAVE __init__.py file in every subdirectory!!!
 
 3. Execute in shell:
