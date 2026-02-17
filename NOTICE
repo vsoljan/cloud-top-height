@@ -1,0 +1,15 @@
+Fast Approximation for Calculating Deep Convection Cloud Top Heights from Satellite Brightness Temperature
+
+Cloud Top Height (CTH) Approximation Method
+Copyright 2024 Vinko Šoljan and contributors
+
+This product includes software developed by Vinko Šoljan.
+
+REQUIRED ATTRIBUTION:
+Any publication, presentation, or derivative software that utilizes 
+this method or code must cite the original work as follows:
+
+Šoljan, V., Jurković, J., and Babić, N.: Fast approximation for 
+calculating deep convection cloud top heights from satellite brightness 
+temperature, EMS Annual Meeting 2024, Barcelona, Spain, 1–6 Sep 2024, 
+EMS2024-861, https://doi.org/10.5194/ems2024-861, 2024.
